@@ -3,7 +3,7 @@
 from rest_framework import serializers
 
 # =============================================================================
-# Milestone 1: Implement CategorySerializer and ProductSerializer (Table 43 in module)
+# Milestone 1: Implement CategorySerializer and ProductSerializer
 # =============================================================================
 #
 # TODO: Import Category and Product from catalog.models

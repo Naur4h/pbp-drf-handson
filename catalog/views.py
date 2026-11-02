@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework import viewsets, permissions
 
 # =============================================================================
-# Milestone 2: Implement CategoryViewSet and ProductViewSet (Table 46 in module)
+# Milestone 2: Implement CategoryViewSet and ProductViewSet
 # =============================================================================
 #
 # TODO: Implement CategoryViewSet(viewsets.ModelViewSet) for Category model.
@@ -12,7 +12,7 @@ from rest_framework import viewsets, permissions
 #       perform_create() associating owner=self.request.user.
 
 # =============================================================================
-# Milestone 3: Attach Filtering and Search to ProductViewSet (Table 49 in module)
+# Milestone 3: Attach Filtering and Search to ProductViewSet 
 # =============================================================================
 #
 # TODO: Add filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
@@ -22,7 +22,7 @@ from rest_framework import viewsets, permissions
 #       Add custom @action restock()
 
 # =============================================================================
-# Milestone 4: Frontend View (Table 53 in module)
+# Milestone 4: Frontend View
 # =============================================================================
 #
 # TODO: Implement product_list_page(request) rendering 'catalog/product_list.html'.

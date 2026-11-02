@@ -6,32 +6,32 @@ By executing the step-by-step milestones below, this template will become a full
 
 ---
 
-## Hands-on Roadmap
+## Hands-on Roadmap (see the last chapter in Module 8)
 
 ### Milestone 1: Define Models and Serialization
 1. In `bambangshop_api/settings.py`, register `'rest_framework'`, `'rest_framework.authtoken'`, and `'catalog'` in `INSTALLED_APPS`.
-2. In `catalog/models.py`, implement `Category` and `Product` models (see Table 42 in the module).
+2. In `catalog/models.py`, implement `Category` and `Product` models.
 3. Run database migrations:
    ```bash
    python manage.py makemigrations
    python manage.py migrate
    ```
-4. In `catalog/serializers.py`, implement `CategorySerializer` and `ProductSerializer` (see Table 43 in the module).
+4. In `catalog/serializers.py`, implement `CategorySerializer` and `ProductSerializer`.
 
 ### Milestone 2: ViewSets, Permissions, and Routers
-1. In `catalog/permissions.py`, implement `IsOwnerOrReadOnly` custom object-level permission (see Table 45 in the module).
-2. In `catalog/views.py`, implement `CategoryViewSet` and `ProductViewSet` extending `ModelViewSet` (see Table 46 in the module).
-3. In `catalog/urls.py`, configure `DefaultRouter` and register both viewsets under `/api/v1/` (see Table 47 in the module).
+1. In `catalog/permissions.py`, implement `IsOwnerOrReadOnly` custom object-level permission.
+2. In `catalog/views.py`, implement `CategoryViewSet` and `ProductViewSet` extending `ModelViewSet`.
+3. In `catalog/urls.py`, configure `DefaultRouter` and register both viewsets under `/api/v1/`.
 
 ### Milestone 3: Filtering, Search, and OpenAPI / Swagger Integration
-1. In `catalog/views.py`, add `DjangoFilterBackend`, `SearchFilter`, and `OrderingFilter` to `ProductViewSet`, and implement the `@action` restock endpoint (see Table 49 in the module).
+1. In `catalog/views.py`, add `DjangoFilterBackend`, `SearchFilter`, and `OrderingFilter` to `ProductViewSet`, and implement the `@action` restock endpoint.
 2. In `bambangshop_api/settings.py`, register `'django_filters'` and `'drf_spectacular'` in `INSTALLED_APPS`, and configure `REST_FRAMEWORK` and `SPECTACULAR_SETTINGS`.
-3. In `bambangshop_api/urls.py`, wire OpenAPI schema and Swagger UI endpoints (`/api/schema/`, `/api/docs/swagger/`, `/api/docs/redoc/`, `/api/v1/auth/token/`) (see Table 50 in the module).
+3. In `bambangshop_api/urls.py`, wire OpenAPI schema and Swagger UI endpoints (`/api/schema/`, `/api/docs/swagger/`, `/api/docs/redoc/`, `/api/v1/auth/token/`).
 
 ### Milestone 4: Integrating the Frontend with AJAX
-1. Examine the modular frontend structure in `catalog/templates/catalog/product_list.html`, `catalog/templates/modals/`, and `catalog/static/catalog/` (see Table 52 in the module).
-2. In `catalog/views.py`, implement `product_list_page` function view. Wire it at the root path in `catalog/urls.py` and include `catalog.urls` in `bambangshop_api/urls.py` (see Table 53 in the module).
-3. In `catalog/static/catalog/js/product_list.js`, implement the client-side AJAX routines using the Fetch API with session authentication and `X-CSRFToken` protection (see Table 54 in the module).
+1. Examine the modular frontend structure in `catalog/templates/catalog/product_list.html`, `catalog/templates/modals/`, and `catalog/static/catalog/`.
+2. In `catalog/views.py`, implement `product_list_page` function view. Wire it at the root path in `catalog/urls.py` and include `catalog.urls` in `bambangshop_api/urls.py`.
+3. In `catalog/static/catalog/js/product_list.js`, implement the client-side AJAX routines using the Fetch API with session authentication and `X-CSRFToken` protection.
 4. Run the automated test suite to verify your implementation:
    ```bash
    python manage.py test

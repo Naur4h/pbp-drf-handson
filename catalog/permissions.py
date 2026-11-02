@@ -3,7 +3,7 @@
 from rest_framework import permissions
 
 # =============================================================================
-# Milestone 2: Define IsOwnerOrReadOnly custom permission class (Table 45 in module)
+# Milestone 2: Define IsOwnerOrReadOnly custom permission class
 # =============================================================================
 #
 # TODO: Implement IsOwnerOrReadOnly extending permissions.BasePermission.
