@@ -1,8 +1,8 @@
 # BambangShop RESTful Catalog API — Hands-on Template
-**Nama:** Naurah Claradinda Aulia Pane 
-**NPM:** 2506657163
-**Kelas:** PBP A
-**Mengerjakan Milestone 1 dan Milestone 2**
+- **Nama:** Naurah Claradinda Aulia Pane
+- **NPM:** 2506657163
+- **Kelas:** PBP A
+- **Mengerjakan:** Milestone 1, 2, dan 3
 
 This directory contains the starter template for the hands-on tutorial in **Module 08: Django REST Framework** for Platform-Based Programming (PBP).
 
@@ -73,11 +73,10 @@ By executing the step-by-step milestones below, this template will become a full
 
 ### Reflection Practice-3
 1. *How does drf-spectacular automatically discover request and response schemas from your ViewSet and ModelSerializer classes?*
-   - [Write your reflection answer here]
+   - drf-spectacular melakukan introspeksi pada kode DRF saat endpoint /api/schema/ diminta. Ia membaca router untuk mendapatkan daftar URL dan HTTP method, lalu membaca serializer_class pada tiap ViewSet. Dari serializer, ia memetakan tiap field (tipe, required, read_only, max_length, validator) menjadi komponen JSON Schema. Serializer untuk request dan response bisa dibedakan, misalnya field read_only seperti owner hanya muncul di response. Informasi tambahan seperti filter, search, ordering, dan permission juga ikut terbaca, sedangkan @action seperti restock yang tidak bisa disimpulkan otomatis dapat dijelaskan lewat dekorator @extend_schema. Hasilnya adalah dokumen OpenAPI 3 yang selalu sinkron dengan kode, tanpa perlu ditulis manual.
 
 2. *How does providing an interactive Swagger UI interface accelerate collaboration between backend engineers and frontend/mobile developers?*
-   - [Write your reflection answer here]
-
+   - Swagger UI menjadi dokumentasi hidup yang selalu sesuai dengan kode, sehingga frontend/mobile tahu persis endpoint, parameter, format request/response, dan kode error tanpa harus bertanya ke backend. Endpoint bisa langsung dicoba lewat tombol “Try it out”, jadi frontend bisa menguji dan memahami perilaku API walaupun UI-nya belum selesai. Skema OpenAPI juga bisa dipakai untuk men-generate client code dan data contoh (mock), sehingga kedua tim bisa bekerja paralel dan salah paham soal kontrak API berkurang.
 ### Reflection Practice-4
 1. *Why is the X-CSRFToken header required for session-authenticated write requests (POST, PUT, DELETE) in Django REST Framework, but omitted for read requests (GET)?*
    - [Write your reflection answer here]
