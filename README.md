@@ -1,4 +1,8 @@
 # BambangShop RESTful Catalog API — Hands-on Template
+**Nama:** Naurah Claradinda Aulia Pane 
+**NPM:** 2506657163
+**Kelas:** PBP A
+**Mengerjakan Milestone 1 dan Milestone 2**
 
 This directory contains the starter template for the hands-on tutorial in **Module 08: Django REST Framework** for Platform-Based Programming (PBP).
 
@@ -43,17 +47,29 @@ By executing the step-by-step milestones below, this template will become a full
 
 ### Reflection Practice-1
 1. *In ProductSerializer, why are owner and category_name configured with read_only=True via ReadOnlyField? What security vulnerability occurs if owner is writable?*
-   - [Write your reflection answer here]
+   - owner dan category_name dibuat read-only karena nilainya tidak boleh ditentukan oleh klien. owner diisi oleh server lewat perform_create() dari request.user, sedangkan category_name hanyalah nilai turunan dari category.name, bukan kolom yang bisa disimpan. Jika owner bisa ditulis, penyerang dapat mengirim username siapa pun di request body dan membuat atau mengubah produk atas nama pengguna lain (mass assignment / impersonation). Hal ini juga melemahkan IsOwnerOrReadOnly, karena kepemilikan produk bisa diubah sembarangan.
 
 2. *Explain the execution order of field-level validation (validate_price) versus object-level validation (validate). When would you choose one over the other?*
-   - [Write your reflection answer here]
+   - Field-level validation (validate_price) dijalankan lebih dulu, terpisah untuk tiap field, setelah field tersebut lolos pengecekan tipe dan constraint bawaan. Object-level validation (validate) dijalankan setelahnya, satu kali, terhadap seluruh data field yang sudah bersih. Jika field-level validation gagal, validate() tidak dijalankan. Gunakan validate_<field> untuk aturan yang menyangkut satu field (misalnya price harus lebih dari 0). Gunakan validate() untuk aturan yang membandingkan beberapa field (misalnya tanggal mulai harus sebelum tanggal selesai).
 
 ### Reflection Practice-2
 1. *When an anonymous user attempts to issue an HTTP DELETE request to `/api/v1/products/1/`, which permission check fails first? Explain the step-by-step evaluation between IsAuthenticatedOrReadOnly and IsOwnerOrReadOnly.*
-   - [Write your reflection answer here]
+   - IsAuthenticatedOrReadOnly gagal lebih dulu. DRF menjalankan check_permissions() (has_permission tiap class, berurutan) sebelum mengambil objek. Request DELETE bukan safe method dan pengguna anonim, sehingga hasilnya False dan request langsung ditolak dengan 401. IsOwnerOrReadOnly tidak pernah dievaluasi, karena pengecekannya (has_object_permission) baru berjalan di dalam get_object(), yang tidak tercapai.
 
 2. *What actions does DefaultRouter generate automatically for ProductViewSet? List each URL path, supported HTTP method, and corresponding action method.*
-   - [Write your reflection answer here]
+   -  `DefaultRouter` membuat route berikut untuk `ProductViewSet`:
+
+     | URL | HTTP method | Action method |
+     |---|---|---|
+     | `/api/v1/products/` | GET | `list` |
+     | `/api/v1/products/` | POST | `create` |
+     | `/api/v1/products/{id}/` | GET | `retrieve` |
+     | `/api/v1/products/{id}/` | PUT | `update` |
+     | `/api/v1/products/{id}/` | PATCH | `partial_update` |
+     | `/api/v1/products/{id}/` | DELETE | `destroy` |
+     | `/api/v1/products/{id}/restock/` | POST | `restock` (custom `@action`) |
+
+     `DefaultRouter` juga menambahkan API root view di `/api/v1/`.
 
 ### Reflection Practice-3
 1. *How does drf-spectacular automatically discover request and response schemas from your ViewSet and ModelSerializer classes?*
